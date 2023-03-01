@@ -1,6 +1,10 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
+type Item<S = string> = {
+  name: S;
+};
+
 const array = [
   {
     name: "John",
@@ -10,7 +14,7 @@ const array = [
   },
 ];
 
-const obj = array.reduce((accum, item) => {
+const obj = array.reduce<Record<string, Item<string>>>((accum, item) => {
   accum[item.name] = item;
   return accum;
 }, {});
